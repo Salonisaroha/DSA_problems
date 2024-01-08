@@ -57,6 +57,9 @@ void printArray(int array[], int size) {
 int main() {
   int array[] = {4, 2, 2, 8, 3, 3, 1};
   int n = sizeof(array) / sizeof(array[0]);
+  cout<<"Before sorting elements are :- ";
+  printArray(array, n);
   countSort(array, n);
+  cout<<"After sorting elements are :- ";
   printArray(array, n);
 }
