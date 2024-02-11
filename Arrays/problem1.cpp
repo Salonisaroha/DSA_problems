@@ -24,7 +24,46 @@ int secondlargest(int arr[], int n) {
     }
     return secondLargest;
 }
+
+void sortZeroesAndOnes(vector<int> &sort){
+   int left_ptr = 0;
+   int right_ptr = sort.size() -1;
+   while(left_ptr<right_ptr){
+    if(sort[left_ptr]==1 && sort[right_ptr]==0){
+        sort[left_ptr++] = 0;
+        sort[right_ptr--] = 1;
+    }
+
+    if(sort[left_ptr]==0){
+        left_ptr++;
+    }
+    if(sort[right_ptr]==1){
+        right_ptr--;
+    }
+
+
+   }
+}
+
+void positionOfOddandEven(vector<int> &vec){
+    int start = 0;
+    int end = vec.size()-1;
+  while(start<end){
+    if(vec[start]%2 ==1 && vec[end]%2==0){
+        swap(vec[start], vec[end]);
+        start++; end--;
+    }
+ if(vec[start]%2==0){
+    start++;
+  }
+  if(vec[end]%2==1){
+    end--;
+  }
+  }
+
  
+
+}
 int main(){
     //Question 1:- Find the total number of pairs in the Array whose sum is equal to the given value of x.
 
@@ -130,6 +169,42 @@ while(q--){
     cout<<freq[querelement]<<endl;
 }
 
+// Question 7:- sort an array consisting of 0s and 1s
 
 
+int input;
+cin>>input;
+vector<int> sort;
+
+for(int i=0; i<input; i++){
+    int ele;
+    cin>>ele;
+    sort.push_back(ele);
+}
+
+sortZeroesAndOnes(sort);
+
+for(int i = 0; i<input; i++){
+    cout<<sort[i]<<" ";
+}
+
+// Question 8:- Given an array a move all the even integers aat the begining of the array followed by all the odd integers. The relative oredr of odd or even integers does not matter. Return any array that satisfies the condition.
+
+
+int num;
+cout<<"Enter number of elements:- ";
+cin>>num;
+vector<int> vec;
+for(int i=0; i<num; i++){
+    int ele;
+    cin>>ele;
+    vec.push_back(ele);
+}
+
+positionOfOddandEven(vec);
+
+for(int i=0; i<num; i++){
+    cout<<vec[i]<<" ";
+}
+cout<<endl;
 }
