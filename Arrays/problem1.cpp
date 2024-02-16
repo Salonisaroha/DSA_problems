@@ -2,6 +2,28 @@
 #include<vector>
 using namespace std;
 
+void printArray(int arr[], int n){
+    for(int i=0; i<n; i++){
+        cout<<arr[i]<<" ";
+    }
+}
+
+bool checkPrefixSum(vector<int> &v){
+    int total_sum = 0;
+    for(int i=0; i<v.size(); i++){
+        total_sum +=v[i];
+    }
+    int prefix_sum = 0;
+    for(int i=0; i<v.size(); i++){
+        prefix_sum +=v[i];
+        int suffix_sum = total_sum - prefix_sum;
+
+        if(suffix_sum==prefix_sum){
+            return true;
+        }
+    }
+    return false;
+}
 
 int secondlargest(int arr[], int n) {
     int largest = 0, secondLargest = -1;
@@ -64,8 +86,8 @@ void positionOfOddandEven(vector<int> &vec){
  
 
 }
-int main(){
-    //Question 1:- Find the total number of pairs in the Array whose sum is equal to the given value of x.
+ int main(){
+//     //Question 1:- Find the total number of pairs in the Array whose sum is equal to the given value of x.
 
     int arr[] = {3,4,6,7,1};
     int target = 7;
@@ -126,7 +148,7 @@ int arr1[] = { 12, 35, 1, 10, 34, 1 };
     else
         cout << "Second largest : " << arr1[second_Largest];
 
-// question 5 :-Rotate the given array a by k steps, where k is non-negative.
+// //question 5 :-Rotate the given array a by k steps, where k is non-negative.
 int rotate[] ={1,2,3,4,5};
 int rotatesize = 5;
 int k = 2;
@@ -145,7 +167,7 @@ for(int i=0; i<rotatesize; i++){
     cout<<ansarray[i];
 }
 
-// Question 6 :- Given q queries. check if the given number is present in the array or not.
+// // Question 6 :- Given q queries. check if the given number is present in the array or not.
 
 int noOfelement;
 cin>>noOfelement;
@@ -169,7 +191,7 @@ while(q--){
     cout<<freq[querelement]<<endl;
 }
 
-// Question 7:- sort an array consisting of 0s and 1s
+// // Question 7:- sort an array consisting of 0s and 1s
 
 
 int input;
@@ -188,7 +210,7 @@ for(int i = 0; i<input; i++){
     cout<<sort[i]<<" ";
 }
 
-// Question 8:- Given an array a move all the even integers aat the begining of the array followed by all the odd integers. The relative oredr of odd or even integers does not matter. Return any array that satisfies the condition.
+// // Question 8:- Given an array a move all the even integers aat the begining of the array followed by all the odd integers. The relative oredr of odd or even integers does not matter. Return any array that satisfies the condition.
 
 
 int num;
@@ -207,4 +229,66 @@ for(int i=0; i<num; i++){
     cout<<vec[i]<<" ";
 }
 cout<<endl;
+
+// // Question 9:- Given an integer a sorted in non decreasing oredr, return an array of the sqaures of each number sorted in non-decreasing order.
+
+int n;
+cin>>n;
+int arr[n];
+for(int i=0; i<n; i++){
+    cin>>arr[i];
 }
+
+int temp[n];
+for(int i=0; i<n; i++){
+    temp[i] = arr[i]*arr[i];
+}
+int i, key, j;
+    for (i = 1; i < n; i++) {
+        key = temp[i];
+        j = i - 1;
+        while (j >= 0 && temp[j] > key) {
+            temp[j + 1] = temp[j];
+            j = j - 1;
+        }
+        temp[j + 1] = key;
+    }
+    printArray(temp,n);
+
+//Question 10:- Given an integer array 'a' return the prefix sum. running sum in the same array without creating a new array.
+
+int n;
+cin>>n;
+int arr[n];
+for(int i=0; i<n; i++){
+    cin>>arr[i];
+}
+ int j=0;
+for(int i = 0; i<n; i++){
+arr[i] = arr[i]+j;
+j = arr[i];
+}
+
+printArray(arr,n);
+
+// Question 11:- Check if we can partition the array into two subarrays with equal sum. More formally, check that the prefix sum of a part of the array is equal to the suffix sum of rest of the array.
+
+int n;
+cin>>n;
+vector<int> v;
+for(int i=0; i<n; i++){
+    int ele;
+    cin>>ele;
+    v.push_back(ele);
+}
+
+cout<<checkPrefixSum(v)<<endl;
+
+// Question 12:- Give an array of integer of size n. Answer q queries where you need to print the sum of values in a given range of indices from l to r(both included).
+
+
+
+
+
+}
+
