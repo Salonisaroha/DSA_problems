@@ -284,7 +284,6 @@ for(int i=0; i<n; i++){
 
 cout<<checkPrefixSum(v)<<endl;
 
-// Question 12:- Give an array of integer of size n. Answer q queries where you need to print the sum of values in a given range of indices from l to r(both included).
 
 
 
