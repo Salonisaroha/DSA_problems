@@ -147,6 +147,106 @@ for(int i=1; i<=n; i++){
     }
     cout<<endl;
 }
+ /*Printing
+    1
+    2 1
+    3 2 1
+    4 3 2 1
+    */
+    int k; 
+    cin>>k;
+    int i = 1;
+    while(i<=k){
+        int j = 1; 
+        while(j<=i){
+            cout<<(i-j)+1<<" ";
+            j++;
+        }
+        i++;
+        cout<<endl;
+
+    /*Printing
+    A B C
+    B C D
+    C D E
+    */
+int m;
+cin>>m;
+for(int i= 1; i<=m; i++){
+    for(int j = 1; j<=m; j++){
+      char ch = 'A' + i + j -2;
+      cout<<ch<<" ";
+      
+    }
+    cout<<endl;
+}
+/*Printing
+    A  
+    B B 
+    C C C
+    D D D D*/
+int x; 
+cin>>x;
+for(int i=1; i<=x; i++){
+    for(int j=1; j<=i; j++){
+        char ch = 'A' + i -1;
+        cout<<ch<<" ";
+    }
+    cout<<endl;
+}
+
+/*Printing
+    *
+  * *
+* *  *
+*/
+int n;
+cin>>n;
+int row = 1;
+while(row<=n){
+   int space = n-row;
+   while(space){
+      cout<<" ";
+      space = space -1 ;
+   }
+   int col = 1;
+   while(col<=row){
+      cout<<1+row-1;
+      col = col + 1;
+   }
+   cout<<endl;
+   row = row + 1;
+}
+/*Printing
+       1
+    1  2 1
+ 1  2  3 2 1
+
+*/
+int n;
+cin>>n;
+int row = 1;
+while(row<=n){
+   int space = n - row;
+   while(space){
+         cout<<" ";
+   space = space - 1;
+   }
+  
+   int j= 1;
+while(j<= row){
+   cout<<j;
+   j = j + 1;
+}
+int start= row - 1;
+while(start){
+   cout<<start;
+   start = start - 1;
+
+}
+cout<<endl;
+row = row + 1;
+}
 
 
 }
