@@ -43,6 +43,27 @@ void mergeSort(int *arr, int s, int e){
     mergeSort(arr, mid+1, e);
     merge(arr, s, mid, e);
 }
+int partition(int arr[], int start, int end){
+    int pivot = arr[end];
+    int i = start-1;
+    for(int j= start; j<end; j++){
+        if(arr[j]<pivot){
+            i++;
+            swap(arr[i], arr[j]);
+        }
+        
+    }
+    swap(arr[i+1], arr[end]);
+    return i+1;
+}
+void quickSort(int arr[], int s, int e){
+    if(s<e){
+      int pi = partition(arr, s, e);
+        quickSort(arr,s,pi-1);
+        quickSort(arr,pi+1,e);
+    }
+    
+}
 
 int main(){
     int n;
@@ -55,5 +76,17 @@ int main(){
     for(int i=0; i<n; i++){
         cout<<arr[i]<<" ";
     }
+
+    int n1;
+    cin>>n1;
+    int arr1[n1];
+    for(int i = 0; i<n1; i++){
+        cin>>arr1[i];
+    }
+    quickSort(arr1, 0, n1-1);
+    for(int i=0; i<n1; i++){
+        cout<<arr1[i]<<" ";
+    }
+
 
 }
