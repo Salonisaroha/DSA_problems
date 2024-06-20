@@ -15,6 +15,6 @@ using namespace std;
 
     cout<<str.length()<<endl;
     cout<<str.at(3)<<endl;
-    cout<<str.substr(1,10);
-    cout<<str.find("apna");
+    cout<<str.substr(1,10)<<endl;
+    cout<<str.find("apna")<<endl; //index of first occurence
  }
