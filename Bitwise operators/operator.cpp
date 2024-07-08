@@ -11,7 +11,7 @@ int main(){
     cout<<(2^4)<<endl;
 
     // not operator
-    cout<<(~9);
+    cout<<(~9)<<endl;
 
     // Left shift
 
