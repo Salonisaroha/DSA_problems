@@ -7,11 +7,14 @@ public:
 Car(){
     cout<<"These are non-parametrized constructor or default constructor"<<endl;
 }
-// Car(string nameVal, string colorVal){
-//     cout<<"Welcome to the constructor."<<endl;
-//     name = nameVal;
-//     color = colorVal;
-// }
+
+// parametrized constructor are used for initilization purpose.
+// constructor overloading is when we use same constructor but with different parametres.
+Car(string nameVal, string colorVal){
+    cout<<"Welcome to the constructor."<<endl;
+    name = nameVal;
+    color = colorVal;
+}
 
 // Made constructor by using this .
 // this keyword is used for pointing the current object.
