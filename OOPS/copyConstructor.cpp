@@ -19,6 +19,13 @@ class Car{
             color = original.color;
             mileage = original.mileage;
         }
+        ~Car(){
+            cout<<"deleting objects\n";
+            if(mileage!=NULL){
+                delete mileage;
+                mileage = NULL;
+            }
+        }
 
 
 };
