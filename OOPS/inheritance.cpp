@@ -5,6 +5,7 @@ using namespace std;
 1. single inheritance
 2. Multilevel inheritance
 3. Multiple inheritance
+4. Hybrid and hierarchial inheritance
 */
 
 // when properties and member functions of base class is passed on to the derived class.It is used to increase the code reusability.
@@ -69,7 +70,7 @@ int main(){
     d1.breathe();
     d1.eat();
     d1.tailWag();
-   cout<< d1.bloodType;
+   cout<< d1.bloodType<<endl;
 
    TA ta1;
    ta1.name = "Saloni Saroha";
