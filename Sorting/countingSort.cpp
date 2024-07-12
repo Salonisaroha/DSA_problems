@@ -60,6 +60,6 @@ int main() {
   cout<<"Before sorting elements are :- ";
   printArray(array, n);
   countSort(array, n);
-  cout<<"After sorting elements are :- ";
+  cout<<"After sorting elements are :- "; 
   printArray(array, n);
 }
