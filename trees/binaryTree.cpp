@@ -117,11 +117,33 @@ int count(Node* root){
      return currC;
 }
 
+int sum(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+    int sumL = sum(root->left);
+    int sumR = sum(root->right);
+    int currS = sumL + sumR + root->data;
+    return currS;
+}
+
+int dia1(Node* root){
+    if(root==NULL){
+        return 0; 
+    }
+    int currDia = height(root-> left) + height(root->right) + 1;
+    int leftD = dia1(root->left);
+    int rightD = dia1(root->right);
+
+    return max(currDia, max(leftD, rightD));
+}
+
 int main() {
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
     Node* root = buildTree(nodes);
     cout << "Root: " << root->data << endl;
+    
 
     preOrder(root);
     cout << endl;
@@ -143,8 +165,13 @@ Node* root2 = new Node(5);
 root2->left = new Node(3);
 root2 ->right = new Node(4);
 
-cout<<count(root2)<<endl;
-cout<<height(root2)<<endl;
+cout<<"Count of binary tree is  "<<count(root2)<<endl;
+cout<<"Height of binary tree is  "<<height(root2)<<endl;
+
+cout<<"Sum of binary tree is  "<<sum(root)<<endl;
+cout<<"Sum of binary tree is  "<<sum(root2)<<endl;
+
+cout<<"Diameter of binary tree is  "<<dia1(root)<<endl;
 
     return 0;
 }
