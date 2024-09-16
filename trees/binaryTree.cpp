@@ -156,6 +156,42 @@ pair<int, int> dia2(Node* root) {
     return make_pair(finalDiam, finalht);
 }
 
+bool isIdentical (Node* root1, Node* root2){
+    if(root1==NULL && root2 == NULL){
+        return true;
+    }
+
+    else if (root1==NULL || root2 == NULL){
+   return false;
+    }
+    if(root1 -> data != root2->data){
+        return false;
+    }
+
+    return isIdentical(root1->left, root2->left) && isIdentical(root1->right, root2->right);
+}
+
+bool isSubtree(Node* root, Node* subRoot){
+    if(root==NULL && subRoot == NULL){
+        return true;
+    }
+
+    else if (root==NULL || subRoot == NULL){
+   return false;
+    }
+if(root->data == subRoot->data){
+if(isIdentical(root, subRoot)){
+    return true;
+}
+}
+int isLeftSubtree = isSubtree(root->left, subRoot);
+if(!isLeftSubtree){
+    return isSubtree(root->right, subRoot);
+}
+
+return true;
+}
+
 int main() {
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -192,6 +228,12 @@ int main() {
     cout << "Diameter of binary tree (dia1): " << dia1(root) << endl;
 
     cout << "Diameter of binary tree (dia2): " << dia2(root).first << endl;
+
+    Node* subRoot = new Node(2);
+    subRoot->left = new Node(4);
+   subRoot->right = new Node(5);
+
+    cout<<isSubtree(root, subRoot)<<endl;
 
     return 0;
 }
