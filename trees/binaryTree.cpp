@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<map>
 
 using namespace std;
 
@@ -192,6 +193,39 @@ if(!isLeftSubtree){
 return true;
 }
 
+void topView(Node* root){
+    queue<pair<Node*, int>>Q;
+    map<int, int> m;
+    Q.push(make_pair(root, 0));
+    while(!Q.empty()){
+        pair<Node*, int> curr = Q.front();
+        Q.pop();
+        Node* currNode = curr.first;
+      
+        int currHD = curr.second;
+
+        if(m.count(currHD)==0){
+            m[currHD] = currNode->data;
+
+        }
+        if(currNode->left!= NULL){
+            pair<Node*, int> left = make_pair(currNode->left, currHD-1);
+            Q.push(left);
+
+        }
+         if(currNode->right!= NULL){
+            pair<Node*, int> right = make_pair(currNode->right, currHD+1);
+            Q.push(right);
+
+        }
+    }
+
+    for(auto it:m){
+        cout<<it.second<<" ";
+    }
+    cout<<endl;
+}
+
 int main() {
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
@@ -234,6 +268,9 @@ int main() {
    subRoot->right = new Node(5);
 
     cout<<isSubtree(root, subRoot)<<endl;
+
+   topView(root);
+
 
     return 0;
 }
