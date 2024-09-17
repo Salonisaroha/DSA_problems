@@ -33,7 +33,7 @@ Node* insert(Node* root, int val){
 Node* buildBST(int arr[], int n){
     Node* root = NULL;
     for(int i = 0; i < n; i++){
-        root = insert(root, arr[i]); // Corrected: passing arr[i]
+        root = insert(root, arr[i]);
     }
     return root;
 }
@@ -47,14 +47,16 @@ void inorder(Node* root){
     cout << root->data << " ";
     inorder(root->right);
 }
+
+// Function to search for a key in the BST
 bool Search(Node* root, int key){
-    if(root==NULL){
+    if(root == NULL){
         return false;
     }
-    if(root->data==key){
+    if(root->data == key){
         return true;
     }
-    if(root->data<key){
+    if(root->data < key){
         return Search(root->right, key);
     }
     else{
@@ -62,13 +64,62 @@ bool Search(Node* root, int key){
     }
 }
 
-int main(){
-    int arr[6] = {5, 1, 3, 4, 2, 7};
-    Node* root = buildBST(arr, 6);
-    inorder(root);
+// Function to get inorder successor (smallest node in the right subtree)
+Node* getInorderSucc(Node* root){
+    while(root->left != NULL){
+        root = root->left;
+    }
+    return root;
+}
 
+// Function to delete a node from the BST
+Node* deleteNode(Node* root, int val){
+    if(root == NULL){
+        return NULL;
+    }
+
+    if(val < root->data){
+        root->left = deleteNode(root->left, val); // Fix: Assign result to root->left
+    }
+    else if(val > root->data){
+        root->right = deleteNode(root->right, val); // Fix: Assign result to root->right
+    }
+    else{
+        // Node to be deleted is found
+        if(root->left == NULL && root->right == NULL){ // No children (leaf node)
+            delete root;
+            return NULL;
+        }
+        if(root->left == NULL || root->right == NULL){ // One child
+            Node* temp = root->left == NULL ? root->right : root->left;
+            delete root;
+            return temp;
+        }
+
+        // Node with two children: get the inorder successor (smallest in the right subtree)
+        Node* IS = getInorderSucc(root->right);
+        root->data = IS->data;
+        root->right = deleteNode(root->right, IS->data); // Fix: Assign result to root->right
+    }
+    return root;
+}
+
+int main(){
+    int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
+    Node* root = buildBST(arr, 9);
+    
+    // Inorder traversal before deletion
+    inorder(root);
     cout << endl;
 
-    cout<<Search(root, 3);
+    // Searching for node 3
+    cout << "Is 3 present? " << (Search(root, 3) ? "Yes" : "No") << endl;
+
+    // Deleting node 4
+    root = deleteNode(root, 4); // Fix: Assign result to root
+    cout << "Inorder after deleting 4: ";
+    inorder(root);
+    cout << endl;
+
     return 0;
 }
