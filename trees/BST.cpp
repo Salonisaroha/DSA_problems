@@ -103,6 +103,22 @@ Node* deleteNode(Node* root, int val){
     }
     return root;
 }
+bool validateHelper(Node* root, Node* min, Node* max){
+if(root==NULL){
+    return true;
+}
+if(min!=NULL && root->data<min->data){
+ return false;
+}
+if(max!= NULL && root->data>max->data){
+    return false;
+}
+return validateHelper(root->left, min, root) && validateHelper(root->right, root, max);
+}
+
+bool validateBST(Node* root){
+    return validateHelper(root, NULL, NULL);
+}
 
 int main(){
     int arr[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
@@ -120,6 +136,11 @@ int main(){
     cout << "Inorder after deleting 4: ";
     inorder(root);
     cout << endl;
+
+    int arr2[9] ={8,5,3,1,4,6,10,11,14};
+
+    Node* root2 = buildBST(arr2,9);
+    cout<<validateBST(root)<<endl;
 
     return 0;
 }
