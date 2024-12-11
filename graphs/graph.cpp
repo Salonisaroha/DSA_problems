@@ -58,6 +58,25 @@ void dfs(int u, vector<bool> &vis){
     }
 
 }
+bool helper(int src, int dest, vector<bool> &vis){
+    if(src==dest){
+        return true;
+    }
+    vis[src]= true;
+    list<int>neighbors = l[src];
+    for(int v : neighbors){
+        if(!vis[v]){
+            if(helper(v, dest, vis)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+bool hasPath(int src, int dest){
+    vector<bool> vis(v, false);
+    return helper(src, dest, vis);
+}
 };
 int main(){
     Graph graph(6);
@@ -73,4 +92,5 @@ vector<bool> vis(7,false);
     graph.print();
     graph.bfs();
     graph.dfs(0, vis);
+    graph.hasPath(0,5);
 }
