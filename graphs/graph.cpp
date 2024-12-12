@@ -77,6 +77,28 @@ bool hasPath(int src, int dest){
     vector<bool> vis(v, false);
     return helper(src, dest, vis);
 }
+
+bool underCycleHelper(int src, int par, vector<bool> &vis){
+    vis[src] = true;
+    list<int> neighbors = l[src];
+    for(int v : neighbors){
+        if(!vis[v]){
+            if (underCycleHelper(v, src, vis)){
+                return true;
+            }
+        } else{
+            if(v!= par){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+bool dfsCycle(){
+ vector<bool> vis(v, false);
+  return underCycleHelper(0, -1, vis);
+   
+}
 };
 int main(){
     Graph graph(6);
@@ -93,4 +115,5 @@ vector<bool> vis(7,false);
     graph.bfs();
     graph.dfs(0, vis);
     graph.hasPath(0,5);
+    cout<<graph.dfsCycle()<<endl;
 }
